@@ -1,4 +1,9 @@
 const Log = require('../models/Log');
+const { emitirNovoIncidente } = require('../socketServer');
+
+
+
+emitirNovoIncidente(log); // isso emite só pro app mobile
 
 module.exports = {
   async createLog(req, res) {
