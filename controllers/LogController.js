@@ -1,38 +1,34 @@
 const Log = require('../models/Log');
 const { emitirNovoIncidente } = require('../socketServer');
 
-
-
-emitirNovoIncidente(log); // isso emite só pro app mobile
-
 module.exports = {
   async createLog(req, res) {
     try {
       const { data, hora, camera_id, local, tipo_incidente, confianca } = req.body;
       const log = await Log.create({ data, hora, camera_id, local, tipo_incidente, confianca });
+
+      emitirNovoIncidente(log); // Agora está na posição correta
+
       return res.status(201).json(log);
     } catch (error) {
       return res.status(500).json({ error: 'Erro ao criar log de incêndio' });
     }
   },
 
-async getAllLogs(req, res) {
-  try {
-    const logs = await Log.findAll({
-      attributes: ['id', 'data', 'hora', 'camera_id', 'local', 'tipo_incidente', 'confianca'],
-      order: [['data', 'DESC'], ['hora', 'DESC']]
-    });
+  async getAllLogs(req, res) {
+    try {
+      const logs = await Log.findAll({
+        attributes: ['id', 'data', 'hora', 'camera_id', 'local', 'tipo_incidente', 'confianca'],
+        order: [['data', 'DESC'], ['hora', 'DESC']]
+      });
 
-    // Log no terminal para inspecionar os valores de confianca
-    console.log("Logs retornados:", logs.map(log => log.toJSON()));
-
-    return res.json(logs);
-  } catch (error) {
-    console.error('Erro ao buscar logs:', error);
-    return res.status(500).json({ error: 'Erro ao buscar logs' });
-  }
-}
-,
+      console.log("Logs retornados:", logs.map(log => log.toJSON()));
+      return res.json(logs);
+    } catch (error) {
+      console.error('Erro ao buscar logs:', error);
+      return res.status(500).json({ error: 'Erro ao buscar logs' });
+    }
+  },
 
   async getLogById(req, res) {
     try {
