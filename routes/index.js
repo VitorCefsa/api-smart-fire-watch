@@ -9,11 +9,13 @@ router.get('/logs', LogController.getAllLogs);
 router.get('/logs/:id', LogController.getLogById);
 router.get('/logs-por-data', LogController.getLogsByDateRange);
 
+// ✅ NOVA ROTA: marcar incidente como resolvido
+router.put('/logs/:id/resolver', LogController.resolverLog);
+
 router.use('/dashboard', require('./dashboard'));
 router.use('/cameras', require('./cameras'));
 router.use('/cameras-db', require('./cameraDbRoutes'));
 router.use('/infer', inferenceRoutes);
 router.use('/capturas', require('./capturaRoutes'));
-
 
 module.exports = router;
