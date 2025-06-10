@@ -30,6 +30,15 @@ const Log = sequelize.define('Log', {
   confianca: {
     type: DataTypes.FLOAT,
     allowNull: true
+  },
+  status: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: 'não resolvido'
+  },
+  imagem_base64: {
+    type: DataTypes.TEXT('long'), // ou DataTypes.TEXT apenas, se estiver usando SQLite
+    allowNull: true
   }
 });
 
