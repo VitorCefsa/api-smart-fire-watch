@@ -14,7 +14,6 @@ API oficial do sistema **SmartFireWatch**, parte do TCC de Engenharia da Computa
 
 - **Node.js** com **Express**
 - **SQLite** para armazenamento
-- **Knex.js** (ou query builder embutido, se aplicável)
 - **Dotenv** para variáveis de ambiente
 - **Body-parser** para requisições JSON
 
