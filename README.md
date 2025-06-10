@@ -72,11 +72,7 @@ api-smart-fire-watch/
 - Dashboard web
 - Integração com APIs externas (ex: alertas)
 
-## 👨‍💻 Autor
 
-**Vitor Argolo**  
-Aluno de Engenharia da Computação  
-Faculdade de Tecnologia Engenheiro Salvador Arena
 
 ---
 
